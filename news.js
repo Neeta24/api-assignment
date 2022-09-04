@@ -50,14 +50,16 @@ const displayNews = (categoryNewses) =>{
     <h2 class="card-title">${categoryNews.title}</h2>
     <p>${categoryNews.details}</p>
 
-    <div>
-    <img src="${categoryNews.image_url}" alt="Movie">
-    <p></p>
-    
-    </div>
-    <div class="card-actions ">
-      <button class="btn btn-primary">Watch</button>
-    </div>
+   <div class="grid gap-4 grid-cols-3 display-inline mt-4">
+   <div>
+   <img height="20" width="30" class="image-style" src="${categoryNews.author.img}" alt="Movie">
+   <span  class ="flex-1">${categoryNews.author.name}</span><br><span>${categoryNews.author.published_date}</span>
+   </div>
+   <div class ="mt-4"> <i class="fa-regular fa-eye"><span class ="mx-4">${categoryNews.total_view}</span></i></div>
+   
+   <div class ="mt-4"> <i class="fa-solid fa-arrow-right"></i></div>
+   </div>
+   
   </div>
         
         `;
