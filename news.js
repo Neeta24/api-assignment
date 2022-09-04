@@ -1,6 +1,7 @@
 const loadAllMenus = async()=>{
     const response = await fetch('https://openapi.programming-hero.com/api/news/categories');
-    const data = await response.json();
+    const data = await response.json()
+    .catch(err => alert(err.message))
     return data;
 
 }
@@ -46,7 +47,8 @@ const loadAllNews = async(category_id)=>{
     const data = await response.json();
     
     displayNews(data.data);
-     return data;
+  return data;
+    
      
   
 }
