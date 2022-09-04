@@ -9,7 +9,7 @@ const loadAllMenus = async()=>{
     const data =await loadAllMenus();
     
     displayCategories(data.data.news_category);
-    toggleLoader(true);
+   
   
   }
 
@@ -27,10 +27,10 @@ const displayCategories = category =>{
         
         ulContainer.appendChild(li);
     });
-   toggleLoader(false)
+   
 }
  const toggleLoader = isloading =>{
-  const loaderSection = documnet.getElementById('loader');
+  const loaderSection = document.getElementById('loader');
   if(isloading){
     loaderSection.classList.remove('hiddden')
   }
@@ -41,8 +41,10 @@ const displayCategories = category =>{
  }
 
 const loadAllNews = async(category_id)=>{
+  toggleLoader(true);
     const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`);
     const data = await response.json();
+    
     displayNews(data.data);
   
 }
@@ -53,8 +55,6 @@ const displayNews = (categoryNewses) =>{
   
     const categorydiv = document.getElementById("card-container");
     categorydiv.innerText='';
-
-
 
     const noItem = document.getElementById('no-item')
     if(categoryNewses.length === 0){
@@ -82,7 +82,8 @@ const displayNews = (categoryNewses) =>{
    </div>
    <div class ="mt-4"> <i class="fa-regular fa-eye"><span class ="mx-4">${categoryNews.total_view}</span></i></div>
    
-   <div> <i class="fa-solid fa-arrow-right"></i></div>
+   <div class ="mt-4"><label for="my-modal-3" onclick ="showModal('${categoryNews.image_url}','${categoryNews.title}')" class="btn modal-button">show More</label></div>
+   
    </div>
    
   </div>
@@ -90,8 +91,19 @@ const displayNews = (categoryNewses) =>{
         `;
         categorydiv.appendChild(div);
     });
+    toggleLoader(false)
+    
 }
 
+
+const showModal = (descriptions,image)=>{
+//  console.log(descriptions,image);
+const modalBody = document.getElementById('modal-body');
+modalBody.innerHTML=`
+<p class="py-4">${categoryNews.title}</p> 
+<img src="${categoryNews.image_url}" />
+`
+}
 
 
 
