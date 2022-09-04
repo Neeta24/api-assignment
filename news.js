@@ -7,11 +7,14 @@ const loadAllMenus = async()=>{
 
   const setMenus = async()=>{
     const data =await loadAllMenus();
+    
     displayCategories(data.data.news_category);
+    toggleLoader(true);
   
   }
 
 const displayCategories = category =>{
+  
     const ulContainer = document.getElementById("ul-container");
     category ?.forEach(categoryName => {
         console.log(categoryName.category_name);
@@ -21,11 +24,21 @@ const displayCategories = category =>{
        <a onclick ="loadAllNews('${categoryName.category_id}')">${(categoryName.category_name)}</a>
         
         `;
+        
         ulContainer.appendChild(li);
     });
-
+   toggleLoader(false)
 }
+ const toggleLoader = isloading =>{
+  const loaderSection = documnet.getElementById('loader');
+  if(isloading){
+    loaderSection.classList.remove('hiddden')
+  }
 
+   else{
+    loaderSection.classList.add('hiddden')
+   }
+ }
 
 const loadAllNews = async(category_id)=>{
     const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`);
@@ -37,6 +50,7 @@ const loadAllNews = async(category_id)=>{
 
 const displayNews = (categoryNewses) =>{
   console.log(categoryNewses);
+  
     const categorydiv = document.getElementById("card-container");
     categorydiv.innerText='';
 
@@ -46,6 +60,9 @@ const displayNews = (categoryNewses) =>{
     if(categoryNewses.length === 0){
      noItem.classList.remove('hidden')
       
+    }
+    else{
+      noItem.classList.add('hidden')
     }
     categoryNewses ?.forEach(categoryNews => {
         console.log(categoryNews);
