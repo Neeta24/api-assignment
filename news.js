@@ -18,7 +18,7 @@ const displayCategories = category =>{
         const li= document.createElement('li');
     
         li.innerHTML=`
-       <a>${(categoryName.category_name)}</a>
+       <a onclick ="loadAllNews('${categoryName.category_id}')">${(categoryName.category_name)}</a>
         
         `;
         ulContainer.appendChild(li);
@@ -27,10 +27,11 @@ const displayCategories = category =>{
 }
 
 
-const loadAllNews = async()=>{
-    const response = await fetch('https://openapi.programming-hero.com/api/news/categories/{category_id}');
+const loadAllNews = async(category_id)=>{
+    const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`);
     const data = await response.json();
-    return data;
+    return data
+   
 
 }
 
@@ -43,6 +44,7 @@ const loadAllNews = async()=>{
 
 setMenus();
 displayCategories();
+
 
 
 
