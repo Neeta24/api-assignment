@@ -30,20 +30,41 @@ const displayCategories = category =>{
 const loadAllNews = async(category_id)=>{
     const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`);
     const data = await response.json();
-    return data
-   
-
+    displayNews(data.data);
+  
 }
 
-  const setNews = async()=>{
-    const data =await loadAllNews();
-   console.log(data);
-  
-  }
+
+const displayNews = (categoryNewses) =>{
+  console.log(categoryNewses);
+    const categorydiv = document.getElementById("card-container");
+    categoryNewses ?.forEach(categoryNews => {
+        console.log(categoryNews);
+        const div= document.createElement('div');
+        div.classList.add('decoration');
+    
+        div.innerHTML=`
+        <figure><img src="${categoryNews.image_url}" alt="Movie"></figure>
+  <div class="card-body">
+    <h2 class="card-title">${categoryNews.title}</h2>
+    <p>Click the button to watch on Jetflix app.</p>
+    <div class="card-actions ">
+      <button class="btn btn-primary">Watch</button>
+    </div>
+  </div>
+        
+        `;
+        categorydiv.appendChild(div);
+    });
+}
+
+
 
 
 setMenus();
 displayCategories();
+// setNews();
+displayNews();
 
 
 
