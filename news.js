@@ -39,6 +39,14 @@ const displayNews = (categoryNewses) =>{
   console.log(categoryNewses);
     const categorydiv = document.getElementById("card-container");
     categorydiv.innerText='';
+
+
+
+    const noItem = document.getElementById('no-item')
+    if(categoryNewses.length === 0){
+     noItem.classList.remove('hidden')
+      
+    }
     categoryNewses ?.forEach(categoryNews => {
         console.log(categoryNews);
         const div= document.createElement('div');
@@ -48,7 +56,7 @@ const displayNews = (categoryNewses) =>{
         <figure><img src="${categoryNews.image_url}" alt="Movie"></figure>
   <div class="card-body">
     <h2 class="card-title">${categoryNews.title}</h2>
-    <p>${categoryNews.details}</p>
+    <p>${categoryNews.details.length >200 ? categoryNews.details.slice(0,200) + '...'  : categoryNews.details}</p>
 
    <div class="grid gap-4 grid-cols-3 display-inline mt-4">
    <div>
@@ -57,7 +65,7 @@ const displayNews = (categoryNewses) =>{
    </div>
    <div class ="mt-4"> <i class="fa-regular fa-eye"><span class ="mx-4">${categoryNews.total_view}</span></i></div>
    
-   <div class ="mt-4"> <i class="fa-solid fa-arrow-right"></i></div>
+   <div> <i class="fa-solid fa-arrow-right"></i></div>
    </div>
    
   </div>
