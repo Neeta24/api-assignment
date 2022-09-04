@@ -86,7 +86,7 @@ const displayNews = (categoryNewses) =>{
    </div>
    <div class ="mt-4"> <i class="fa-regular fa-eye"><span class ="mx-4">${categoryNews.total_view}</span></i></div>
    
-   <div class ="mt-4"><label for="my-modal-3" onclick ="showModal('${categoryNews.image_url}','${categoryNews.title}')" class="btn modal-button">show More</label></div>
+   <div class ="mt-4"><label for="my-modal-3" onclick ="showModal('${categoryNews.author.img}','${categoryNews.details}')" class="btn modal-button">show More</label></div>
    
    </div>
    
@@ -100,11 +100,11 @@ const displayNews = (categoryNewses) =>{
 }
 const showModal = (descriptions,image)=>{
 //  console.log(descriptions,image);
-const modalBody = document.getElementById('modal-body');
+const modalBody = document.getElementById("modal-body");
 modalBody.innerHTML=`
-<p class="py-4">${categoryNews.title}</p> 
-<img src="${categoryNews.image_url}" />
-`
+<p class="py-4">${descriptions}</p> 
+<img src="${image}"/>
+`;
 }
 
 
@@ -113,6 +113,7 @@ setMenus();
 displayCategories();
 // setNews();
 displayNews();
+
 
 
 
