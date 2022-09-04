@@ -46,6 +46,8 @@ const loadAllNews = async(category_id)=>{
     const data = await response.json();
     
     displayNews(data.data);
+     return data;
+     
   
 }
 
@@ -94,8 +96,6 @@ const displayNews = (categoryNewses) =>{
     toggleLoader(false)
     
 }
-
-
 const showModal = (descriptions,image)=>{
 //  console.log(descriptions,image);
 const modalBody = document.getElementById('modal-body');
